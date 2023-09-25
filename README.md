@@ -2,7 +2,7 @@
 Face an AI in the Game of 15 (aka [Numerical Tic Tac Toe](https://mathequalslove.net/numerical-tic-tac-toe/))
 ## Overview
 - This is a Game of 15 automation program written in C++. The AI uses [Minimax](https://en.wikipedia.org/wiki/Minimax) with [Alpha Beta Pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning) to calculate the optimal next move for any given board.
-- This software is very CPU-bound as it uses BFS and multithreading to run several calculations in parallel.
+- This software is very CPU-intensive as it uses BFS and multithreading to run several calculations in parallel.
 - This program was written for Windows and hasn't been tested on other platforms.
 ## How to Play
 - Use `./batch./runmain.bat` to compile and run the executable
