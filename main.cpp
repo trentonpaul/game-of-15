@@ -17,8 +17,6 @@ using namespace std;
 
 Board randomOddStart()
 {
-  // const int oddStartIndex = {1, 3, 5, 7};
-  // const int oddStartNumber[4] = {1, 3, 7, 9};
 
   const vector<tuple<int, int>> options({
     tuple<int, int>(-1, 0),
@@ -68,7 +66,7 @@ void getBoardNew(vector<int>& board) {
 int main(int argc, char*argv[]) {
 
   string boardInp;
-  cout << "Enter the board: ";
+  cout << "Enter the board, format: (a,b,d,e,f,g,h,i,j): ";
   getline(cin, boardInp);
   Board board = Board(boardInp);
 
@@ -77,6 +75,7 @@ int main(int argc, char*argv[]) {
 
   cout << "AI playing as " << ((AITeam == EVENS) ? "EVENS" : "ODDS") << endl;
 
+  /* TWO AIs FACING EACH OTHER */
   /*while (board.isOver() == false)
   {
     if (board.getTurn() == AITeam)
@@ -101,11 +100,12 @@ int main(int argc, char*argv[]) {
     turnNo++;
   }*/
 
+  /* PLAYER VS. AI */
   while (board.isOver() == false)
   {
     if (board.getTurn() == AITeam)
     {
-      if (turnNo == 1 && AITeam == ODDS)
+      if (turnNo == 1 && board.getNumOccupied() == 0 && AITeam == ODDS)
       {
         board = randomOddStart();
       }
@@ -153,67 +153,3 @@ int main(int argc, char*argv[]) {
   }
 
 }
-
-/*int main(int argc, char*argv[]) {
-
-  const int oddStartIndex[4] = {1, 3, 5, 7};
-  const int oddStartNumber[4] = {1, 3, 7, 9};
-
-  set<int> odds({1, 3, 5, 7, 9});
-  set<int> evens({2, 4, 6, 8});
-
-  vector<int> board {0, 0, 0, 0, 0, 0, 0, 0, 0};
-
-  bool playOdds = true;
-  bool turn = ODDS;
-  int turnNo = 1;
-
-  char response;
-
-  cout << "Are you odds? (Y/N): ";
-  cin >> response;
-  
-  srand ( time(NULL) );
-
-  if (response == 'Y' || response == 'y') {
-    playOdds = false;
-  }
-
-  while (!gameWon(board)) {
-    if (playOdds && turn == ODDS) {
-
-      int move = 0;
-      int index = 0;
-
-      if (turnNo == 1) {
-        index = oddStartIndex[rand() % 4];
-        move = oddStartNumber[rand() % 4];
-      } else {
-        vector<int> openSpaces;
-        for (int i = 0; i < board.size(); i++) {
-          if (board[i] == 0) {
-            openSpaces.push_back(i);
-          }
-        }
-        index = openSpaces[rand() % openSpaces.size()];
-        std::vector<int> oddsVec (odds.begin(), odds.end());
-        move = oddsVec[rand() % oddsVec.size()];
-      }
-        
-      board[index] = move;
-      odds.erase(move);
-      cout << "AI ODD Plays:" << endl;
-      printBoard(board);
-    } else if (!playOdds && turn == EVENS) {
-
-    } else {
-      getBoardNew(board);
-    }
-    turnNo++;
-    turn = !turn;
-  }
-
-  printBoard(board);
-  cout << "WON";
-  
-}*/

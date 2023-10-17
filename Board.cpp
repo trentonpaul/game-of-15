@@ -142,7 +142,7 @@ Board Board::getBestMove(bool player)
   int bestScore = numeric_limits<int>::min();
   int depth;
   if (this->numOccupied == 0) depth = 5;
-  else if (this->numOccupied == 1) depth = 8;
+  else if (this->numOccupied == 1) depth = 9;
   else depth = 9;
   // cout << "DEPTH: " << depth << endl;
   Board bestMove = Board(vector<int>({0,0,0,0,0,0,0,0,0}));
